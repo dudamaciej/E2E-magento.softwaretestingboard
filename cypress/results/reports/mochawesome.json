@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2023-10-30T21:09:23.385Z",
+    "end": "2023-10-30T21:09:58.593Z",
+    "duration": 35208,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "d9efdfcb-e7db-4335-8118-d40975e2f8db",
+      "title": "",
+      "fullFile": "cypress\\e2e\\main.cy.js",
+      "file": "cypress\\e2e\\main.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "24d07547-5dcf-44c4-8523-5178033f4f8e",
+          "title": "E2E - Magento Test Shop",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Search for product, add to cart, change quantity and delete",
+              "fullTitle": "E2E - Magento Test Shop Search for product, add to cart, change quantity and delete",
+              "timedOut": null,
+              "duration": 30322,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const name = Cypress.env('order').item_name;\nconst quantity = Cypress.env('order').quantity;\ncy.searchProductByName(name);\ncy.findProductOnPage(name);\ncy.addProductToCart(name);\ncy.get('.showcart').click();\ncy.changeQuantityOfProductInCart(name, quantity);\ncy.deleteItemFromCart(name);",
+              "err": {},
+              "uuid": "6df9a587-f292-4c42-99ad-0e833818baa8",
+              "parentUUID": "24d07547-5dcf-44c4-8523-5178033f4f8e",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "6df9a587-f292-4c42-99ad-0e833818baa8"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 30322,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/results/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

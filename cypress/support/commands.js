@@ -46,3 +46,36 @@ Cypress.Commands.add('deleteItemFromCart', (name) => {
     cy.wait('@postRemoveItemFromCart');
     cy.get('.block-minicart').should('be.visible').contains(name).should('not.exist');
 });
+
+Cypress.Commands.add('findProductOnPage', (name) => {
+    cy.get('ol[class*="products"]').then($container => {
+        if ($container.find(`li[class*="product"]:contains("${name}")`).length) {
+            return true;
+        } else {
+            return false;
+        };
+    }).then(isProductfound => {
+        if (isProductfound) {
+            return cy.log(`Found product "${name}"`);
+        } else {
+            if (Cypress.$('.pages-item-next').length) {
+                cy.get('.pages-item-next').eq(1).click();
+                cy.waitForContext();
+                return cy.findProductOnPage(name);
+            } else {
+                throw new Error(`Couldn't find product "${name}" on any page`);
+            };
+        };
+    });
+});
+
+Cypress.Commands.add('addProductToCart', (name) => {
+    cy.get('ol[class*="products"]').find('li[class*="product"]').contains(name).parents('.product-item-info').then((product) => {
+        cy.wrap(product).find('.product-item-name').invoke('text').then((text) => {
+            expect(text.trim()).to.be.eq(name);
+        });
+        cy.wrap(product).scrollIntoView().realHover().find('button[title="Add to Cart"]').click({ force: true });
+    });
+    cy.waitForContext();
+    cy.get('div[role="alert"]').invoke('text').should('contain', name);
+});
