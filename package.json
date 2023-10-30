@@ -1,0 +1,17 @@
+{
+    "author": "Maciej Duda",
+    "devDependencies": {
+        "cypress": "^13.3.3",
+        "mochawesome": "^7.1.3",
+        "mochawesome-merge": "^4.3.0",
+        "mochawesome-report-generator": "^6.2.0"
+    },
+    "dependencies": {
+        "cypress-real-events": "^1.10.3"
+    },
+    "scripts": {
+        "mochawesome:merge": "npx mochawesome-merge \"cypress/results/reports/*.json\" > mochawesome.json",
+        "mochawesome:html": "npx marge mochawesome.json",
+        "delete:reports": "rm -r cypress/results/* || true"
+    }
+}
